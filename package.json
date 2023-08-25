@@ -26,7 +26,8 @@
   "dependencies": {
     "axios": "1.3.4",
     "cors": "2.8.5",
-    "express": "4.18.2"
+    "express": "^4.18.2",
+    "yarn": "^1.22.19"
   },
   "nodemonConfig": {
     "ignore": [
