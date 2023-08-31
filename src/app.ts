@@ -6,8 +6,7 @@ import { installRoutes } from './framework/function';
 
 import pingController from './controllers/ping.controller';
 import userController from './controllers/user.controller';
-import gameController from "./controllers/tictactoe.controller";
-import * as module from "module";
+import numberGuesserController from "./controllers/numberGuesser.controller";
 
 export interface App {
   app: Application;
@@ -23,7 +22,7 @@ export const createApp = (): App => {
 
   installRoutes(app, pingController);
   installRoutes(app, userController);
-  installRoutes(app, gameController);
+  installRoutes(app,numberGuesserController);
 
 
   let server: http.Server;

@@ -1,9 +1,13 @@
 import { randomUUID } from 'crypto';
 
+
 export type User = {
   id: string;
   username: string;
-  isPlaying: boolean;
+  hasFinished:boolean;
+  isPlaying:boolean;
+  gameId:string | null;
+
 };
 
 const userStore: Record<string, User> = {};
@@ -16,14 +20,19 @@ export const isUsernameTaken = (username: string) => {
 
 export const createUser = (username: string) => {
   const id = randomUUID();
+
   if(isUsernameTaken(username)){
     throw new Error("Username is already taken");
   }
 
+
   userStore[id] = {
     id,
     username,
+    gameId:null,
    isPlaying: false,
+    hasFinished:false,
+
   };
 };
 
