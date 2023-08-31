@@ -1,7 +1,7 @@
 import {HttpStatusCode,} from "axios";
 import {Action} from "../framework/type";
 import {getUserById, updateUser,} from "../service/users.service";
-import {startNumberGuesser,gameInstance, createNumberGuesser, gamesInProgress} from "../service/numberGuesser.service";
+import {startNumberGuesser,gamesInProgress} from "../service/numberGuesser.service";
 import {Response, Request} from "express";
 
 
@@ -58,11 +58,6 @@ const startGame: Action = {
             updateUser(user);
         }
 
-        if (gameInstance.hasEnded()) {
-            const newGame = createNumberGuesser();
-            gamesInProgress.push(newGame);
-        }
-
         startNumberGuesser(userId);
         return response.status(HttpStatusCode.Ok).send();
     }
@@ -84,13 +79,6 @@ const guessNumbers: Action = {
         if (!guessedNumber || guessedNumber.length !== 5 || !/^\d+$/.test(guessedNumber)) {
             return response.status(HttpStatusCode.BadRequest).send({
                 error: "Number must be a positive 5-digit integer"
-            });
-        }
-
-        const parsedNumber = parseInt(guessedNumber, 10);
-        if (parsedNumber <= 0) {
-            return response.status(HttpStatusCode.BadRequest).send({
-                error: "Number must be positive"
             });
         }
 

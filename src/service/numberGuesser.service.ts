@@ -1,5 +1,5 @@
 import {randomUUID} from "crypto";
-import {getUserById, updateUser, User} from "./users.service";
+import {getUserById, updateUser,} from "./users.service";
 
 export  class numberGuesser {
     id:string;
@@ -44,10 +44,6 @@ export  class numberGuesser {
     }
 
 
-}
-export interface UserGame {
-    user: User;
-    gameInstance: numberGuesser;
 }
 
 export const gameInstance = new numberGuesser()
